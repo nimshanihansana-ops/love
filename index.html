@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Valentine 💌</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(#ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            color: white;
+        }
+
+        h1, h2 {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .yes { background: #ff4d6d; color: white; }
+        .maybe { background: #ffd166; }
+        .no { 
+            background: #6c757d; 
+            color: white; 
+            position: absolute;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+<audio autoplay loop>
+    <source src="music/perfect.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Hey Baby 💕<br> this was made specially sor you SHYAMAL,</h1>
+<h2>Will you be my Valentine? 🌹💘</h2>
+
+<form action="yes.html">
+    <button class="yes">Yeaah / Sure 😍</button>
+</form>
+
+<form action="maybe.html">
+    <button class="maybe">Maybe 🤔</button>
+</form>
+
+<form action="no.html" id="noForm">
+    <button type="submit" class="no" id="noBtn">No 🙈</button>
+</form>
+
+<script>
+    
+    const noBtn = document.getElementById("noBtn");
+    let moveCount = 0;
+
+    // Running NO button (only 5 times)
+    noBtn.addEventListener("mouseover", function() {
+
+        if (moveCount < 5) {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            moveCount++;
+        }
+    });
+
+    // Floating Hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
